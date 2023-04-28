@@ -3,7 +3,7 @@ import refs from './js/refs';
 
 const BASE_URL = 'https://pixabay.com/api/';
 let inputValue = '';
-Notify.success('Hi');
+// Notify.success('Hi');
 refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
@@ -75,5 +75,5 @@ function createMarkup(arr) {
     )
     .join('');
 
-  refs.gallery.insertAdjacentHTML(markup);
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
