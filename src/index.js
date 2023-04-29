@@ -1,7 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './js/refs';
 
 let lightbox = new SimpleLightbox('.photo-card a', {
@@ -43,7 +42,7 @@ function onLoadMoreBtnClick() {
 }
 
 async function fetchData(searchQuery) {
-  searchParams = new URLSearchParams({
+  const searchParams = new URLSearchParams({
     key: '35861732-765d2ea3a6aad5336048671b3',
     q: searchQuery,
     image_type: 'photo',
