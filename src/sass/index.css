@@ -1,0 +1,11 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}/*# sourceMappingURL=index.css.map */

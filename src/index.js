@@ -1,10 +1,19 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './js/refs';
+
+let lightbox = new SimpleLightbox('.photo-card a', {
+  /* options */
+});
 
 const BASE_URL = 'https://pixabay.com/api/';
 let inputValue = '';
-// Notify.success('Hi');
+let currentPage = 1;
+const imgPerPage = 40;
 refs.form.addEventListener('submit', onFormSubmit);
+
 refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
 function onFormSubmit(e) {
@@ -12,27 +21,36 @@ function onFormSubmit(e) {
   refs.gallery.innerHTML = '';
 
   inputValue = e.currentTarget.elements.searchQuery.value;
-  fetchData(inputValue).then(response => {
-    console.log(response.hits);
-    createMarkup(response.hits);
+
+  fetchData(inputValue).then(({ hits, totalHits }) => {
+    createMarkup(hits);
+    Notify.success(`"Hooray! We found ${totalHits} images."`);
   });
+
+  refs.loadMoreBtn.hidden = false;
 }
 
 function onLoadMoreBtnClick() {
+  currentPage += 1;
+
   fetchData(inputValue).then(response => {
-    console.log(response.hits);
+    if (currentPage * imgPerPage >= response.totalHits) {
+      Notify.info("We're sorry, but you've reached the end of search results.");
+      refs.loadMoreBtn.hidden = true;
+    }
     createMarkup(response.hits);
   });
 }
 
 async function fetchData(searchQuery) {
-  const searchParams = new URLSearchParams({
+  searchParams = new URLSearchParams({
     key: '35861732-765d2ea3a6aad5336048671b3',
     q: searchQuery,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    per_page: 40,
+    per_page: imgPerPage,
+    page: currentPage,
   });
 
   try {
@@ -55,7 +73,7 @@ function createMarkup(arr) {
         views,
         comments,
         downloads,
-      }) => `<div class="photo-card">
+      }) => `<div class="photo-card"><a href="${largeImageURL}">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -71,9 +89,11 @@ function createMarkup(arr) {
       <b>${downloads}</b>
     </p>
   </div>
+  </a>
 </div>`
     )
     .join('');
 
   refs.gallery.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
 }
