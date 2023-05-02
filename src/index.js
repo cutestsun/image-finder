@@ -1,18 +1,18 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import axios from 'axios';
 import refs from './js/refs';
+import createMarkup from './js/createMarkup';
+import fetchData from './js/api';
+import { BASE_URL } from './js/api';
+let lightbox = new SimpleLightbox('.photo-card a');
 
-let lightbox = new SimpleLightbox('.photo-card a', {
-  /* options */
-});
-
-const BASE_URL = 'https://pixabay.com/api/';
 let inputValue = '';
-let currentPage = 1;
+let currentPage = 12;
 const imgPerPage = 40;
-refs.form.addEventListener('submit', onFormSubmit);
 
+refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
 function onFormSubmit(e) {
@@ -21,78 +21,45 @@ function onFormSubmit(e) {
 
   inputValue = e.currentTarget.elements.searchQuery.value;
 
-  fetchData(inputValue).then(({ hits, totalHits }) => {
-    createMarkup(hits);
-    Notify.success(`"Hooray! We found ${totalHits} images."`);
-  });
+  fetchData(inputValue, imgPerPage, currentPage).then(
+    ({ data: { hits, totalHits } }) => {
+      if (!hits.length) {
+        return Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      }
+      refs.gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
+      Notify.success(`"Hooray! We found ${totalHits} images."`);
 
-  refs.loadMoreBtn.hidden = false;
+      if (hits.length === 40) {
+        setTimeout(() => (refs.loadMoreBtn.hidden = false), 1000);
+      }
+    }
+  );
 }
 
 function onLoadMoreBtnClick() {
   currentPage += 1;
 
-  fetchData(inputValue).then(response => {
-    if (currentPage * imgPerPage >= response.totalHits) {
-      Notify.info("We're sorry, but you've reached the end of search results.");
-      refs.loadMoreBtn.hidden = true;
+  fetchData(inputValue, imgPerPage, currentPage).then(
+    ({ data: { hits, totalHits } }) => {
+      if (currentPage * imgPerPage >= totalHits) {
+        Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+        refs.loadMoreBtn.hidden = true;
+      }
+      refs.gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
+      lightbox.refresh();
+
+      const { height: cardHeight } = document
+        .querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+      console.log(cardHeight);
+      scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
     }
-    createMarkup(response.hits);
-  });
-}
-
-async function fetchData(searchQuery) {
-  const searchParams = new URLSearchParams({
-    key: '35861732-765d2ea3a6aad5336048671b3',
-    q: searchQuery,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: true,
-    per_page: imgPerPage,
-    page: currentPage,
-  });
-
-  try {
-    const response = await fetch(`${BASE_URL}?${searchParams}`);
-
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function createMarkup(arr) {
-  const markup = arr
-    .map(
-      ({
-        webformatURL,
-        largeImageURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => `<div class="photo-card"><a href="${largeImageURL}">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>${likes}</b>
-    </p>
-    <p class="info-item">
-      <b>${views}</b>
-    </p>
-    <p class="info-item">
-      <b>${comments}</b>
-    </p>
-    <p class="info-item">
-      <b>${downloads}</b>
-    </p>
-  </div>
-  </a>
-</div>`
-    )
-    .join('');
-
-  refs.gallery.insertAdjacentHTML('beforeend', markup);
-  lightbox.refresh();
+  );
 }
