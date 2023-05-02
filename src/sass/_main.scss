@@ -5,6 +5,9 @@ $color-primary-white: rgb(240, 240, 240);
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto auto;
   // justify-content: center;
+  @media screen and (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .container {
@@ -75,7 +78,9 @@ body {
   a {
     // position: absolute;
     // opacity: 0;
-    max-width: 80%;
+    // max-width: 80%;
+    display: inline-block;
+    height: 100%;
     transition: opacity 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
@@ -106,12 +111,12 @@ body {
     transition: inset 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
-  &:hover p,
-  &:hover a {
-    opacity: 1;
-    transition: opacity 0.5s 0.1s cubic-bezier(0.65, 0.05, 0.36, 1);
-    inset: auto auto 220px 30px;
-  }
+  // &:hover p,
+  // &:hover a {
+  //   opacity: 1;
+  //   transition: opacity 0.5s 0.1s cubic-bezier(0.65, 0.05, 0.36, 1);
+  //   inset: auto auto 220px 30px;
+  // }
 
   &:hover img {
     transition: opacity 500ms cubic-bezier(0.65, 0.05, 0.36, 1);
