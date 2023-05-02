@@ -9,7 +9,7 @@ import { BASE_URL } from './js/api';
 let lightbox = new SimpleLightbox('.photo-card a');
 
 let inputValue = '';
-let currentPage = 12;
+let currentPage = 1;
 const imgPerPage = 40;
 
 refs.form.addEventListener('submit', onFormSubmit);
