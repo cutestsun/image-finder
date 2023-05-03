@@ -1,20 +1,25 @@
 $color-primary-white: rgb(240, 240, 240);
+
 .gallery {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto auto;
-  // justify-content: center;
+
   @media screen and (max-width: 576px) {
     grid-template-columns: repeat(2, 1fr);
+    .card-content h2 {
+      font-size: 4vw;
+      @media screen and (max-width: 320px) {
+        font-size: 12.85px;
+      }
+    }
   }
 }
 
 .container {
-  // width: 1158px;
-  // width: 428px;
   min-width: 320px;
-  // max-width: 480px;
+
   margin: 0 auto;
   padding: 0 20px;
   // outline: 2px solid tomato;
@@ -27,18 +32,8 @@ $color-primary-white: rgb(240, 240, 240);
   }
 }
 
-body {
-  // height: 2000px;
-}
-
 .card {
   font-family: 'Roboto', sans-serif;
-  // width: 20rem;
-  // height: 12rem;
-  // width: 640px;
-  // height: 391px;
-  // width: 100%;
-  // height: auto;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
@@ -68,33 +63,16 @@ body {
     font-weight: normal;
     text-transform: uppercase;
     margin-bottom: 10px;
-    // font-size: 26px;
+
     &:last-child {
       margin-bottom: 0;
     }
   }
 
-  p,
   a {
-    // position: absolute;
-    // opacity: 0;
-    // max-width: 80%;
     display: inline-block;
     height: 100%;
     transition: opacity 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
-  }
-
-  p {
-    margin-bottom: 8px;
-    inset: auto auto 80px 30px;
-    // position: absolute;
-    // inset: auto auto 30px 30px;
-    // margin: 0;
-
-    // transition: inset .3s .3s cubic-bezier(0.65,0.05,0.36,1);
-    // font-family: 'Roboto Condensed', sans-serif;
-    // font-weight: normal;
-    // text-transform: uppercase;
   }
 
   a {
@@ -110,13 +88,6 @@ body {
     // inset: auto auto 210px 30px;
     transition: inset 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
-
-  // &:hover p,
-  // &:hover a {
-  //   opacity: 1;
-  //   transition: opacity 0.5s 0.1s cubic-bezier(0.65, 0.05, 0.36, 1);
-  //   inset: auto auto 220px 30px;
-  // }
 
   &:hover img {
     transition: opacity 500ms cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -137,7 +108,6 @@ body {
 .card-content {
   visibility: hidden;
   position: absolute;
-  // bottom: -100%;
   left: 0;
   inset: auto auto -100% 30px;
   transition: 500ms cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -160,10 +130,6 @@ body {
       margin-bottom: 3.5px;
     }
   }
-}
-
-.material-symbols-outlined {
-  vertical-align: middle;
 }
 
 .load-more {
