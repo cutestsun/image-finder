@@ -4,8 +4,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './js/refs';
 import createMarkup from './js/createMarkup';
 import fetchData from './js/api';
-import { BASE_URL } from './js/api';
 
+let lightbox = '';
 let inputValue = '';
 let currentPage = 1;
 const imgPerPage = 40;
@@ -36,7 +36,7 @@ async function onFormSubmit(e) {
       refs.loadMoreBtn.hidden = false;
     }
 
-    const lightbox = new SimpleLightbox('.photo-card a');
+    lightbox = new SimpleLightbox('.photo-card a');
   } catch (error) {
     console.log(error);
   }
