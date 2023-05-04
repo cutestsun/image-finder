@@ -33,9 +33,7 @@ async function onFormSubmit(e) {
 
     Notify.success(`"Hooray! We found ${totalHits} images."`);
     if (hits.length === 40) {
-      setTimeout(() => {
-        refs.loadMoreBtn.hidden = false;
-      }, 1000);
+      refs.loadMoreBtn.hidden = false;
     }
 
     lightbox = new SimpleLightbox('.photo-card a');
