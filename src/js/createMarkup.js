@@ -14,15 +14,16 @@ export default function createMarkup(arr) {
   <img
     src="${webformatURL}"
     alt="${tags}"
+    loading="lazy"
   />
   <div class="card-content">
-    <h2>Likes: <span>${likes}</span></h2>
+    <p>Likes: <span>${likes}</span></p>
 
-    <h2>Views: <span>${views}</span></h2>
+    <p>Views: <span>${views}</span></p>
 
-    <h2>Comments: <span>${comments}</span></h2>
+    <p>Comments: <span>${comments}</span></p>
 
-    <h2>Downloads: <span>${downloads}</span></h2>
+    <p>Downloads: <span>${downloads}</span></p>
   </div>
    </a>
 </div>`

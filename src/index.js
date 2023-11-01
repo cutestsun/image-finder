@@ -18,10 +18,12 @@ async function onFormSubmit(e) {
   refs.gallery.innerHTML = '';
 
   inputValue = e.currentTarget.elements.searchQuery.value;
+
   try {
     const {
       data: { hits, totalHits },
     } = await fetchData(inputValue, imgPerPage, currentPage);
+
     if (!hits.length) {
       return Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -41,6 +43,7 @@ async function onFormSubmit(e) {
     console.log(error);
   }
 }
+
 async function onLoadMoreBtnClick() {
   currentPage += 1;
 
@@ -48,6 +51,7 @@ async function onLoadMoreBtnClick() {
     const {
       data: { hits, totalHits },
     } = await fetchData(inputValue, imgPerPage, currentPage);
+
     if (currentPage * imgPerPage >= totalHits) {
       Notify.info("We're sorry, but you've reached the end of search results.");
       refs.loadMoreBtn.hidden = true;
@@ -60,9 +64,9 @@ async function onLoadMoreBtnClick() {
     const { height: cardHeight } = document
       .querySelector('.gallery')
       .firstElementChild.getBoundingClientRect();
-    console.log(cardHeight);
+
     scrollBy({
-      top: cardHeight * 2,
+      top: cardHeight * 3,
       behavior: 'smooth',
     });
   } catch (error) {
