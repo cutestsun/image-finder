@@ -12,6 +12,7 @@ Image Finder leverages the power of the Pixabay API to provide you with an exten
 - Interactive elements and animation
 - Search for images by name.
 - View information about the image like likes, views, comments, and downloads.
+- Open a modal window with a high-quality image
 
 ## Technologies
 
@@ -22,6 +23,7 @@ The following technologies were used to create this project:
 - JavaScript
 - Pixabay API
 - Axios
+- SimpleLightbox
 
 ## Project Launch 
 
