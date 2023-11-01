@@ -1,17 +1,17 @@
 # 🏞️ Image Finder
 
-Image Finder - is a project for searching information about different countries. You can find details about any country worldwide, including its flag, capital, population, languages, etc.
+Image Finder is a web application that allows you to search for images. Whether you're looking for pictures of your favourite places, animals, or anything else, Image Finder has got you covered.
 
 ## About
 
-Country Finder provides access to country data using the Rest Countries API. You can search for countries, view basic information about each country and when clicked, Wikipedia will open with detailed information about the country.
+Image Finder leverages the power of the Pixabay API to provide you with an extensive collection of high-quality images. You can easily search for images based on keywords, view image details, and load images in groups using pagination to avoid overloading your device and web page.
 
 ## Features
 
 - Professional web design
 - Interactive elements and animation
-- Search for countries by name.
-- View detailed information about a country.
+- Search for images by name.
+- View information about the image like likes, views, comments, and downloads.
 
 ## Technologies
 
@@ -20,9 +20,10 @@ The following technologies were used to create this project:
 - HTML
 - CSS
 - JavaScript
-- Rest Countries API
+- Pixabay API
+- Axios
 
 ## Project Launch 
 
-To see the website in action, simply follow the link: [Image Finder](https://cutestsun.github.io/Image-finder/)
+To see the website in action, simply follow the link: [Image Finder](https://cutestsun.github.io/image-finder/)
 
