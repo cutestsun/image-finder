@@ -1,21 +1,21 @@
 {
-  "name": "goit-js-hw-11",
+  "name": "image-finder",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://cutestsun.github.io/goit-js-hw-11",
+  "homepage": "https://cutestsun.github.io/image-finder",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
+    "build": "parcel build src/*.html --public-url /image-finder/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cutestsun/goit-js-hw-11.git"
+    "url": "git+https://github.com/cutestsun/image-finder.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cutestsun/goit-js-hw-11/issues"
+    "url": "https://github.com/cutestsun/image-finder/issues"
   },
   "dependencies": {
     "axios": "^1.4.0",
