@@ -1,5 +1,7 @@
 # 🏞️ Image Finder
 
+<img width="1440" alt="image-finder" src="https://github.com/cutestsun/image-finder/assets/118314867/a410e5b2-3e2c-4ee5-bc14-b9da0927b235">
+
 Image Finder is a web application that allows you to search for images. Whether you're looking for pictures of your favourite places, animals, or anything else, Image Finder has got you covered.
 
 ## About
