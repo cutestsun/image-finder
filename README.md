@@ -21,7 +21,7 @@ Image Finder leverages the power of the Pixabay API to provide you with an exten
 The following technologies were used to create this project:
 
 - HTML
-- CSS
+- CSS (SASS)
 - JavaScript
 - Pixabay API
 - Axios
